@@ -47,6 +47,13 @@ class User extends Authenticatable
     }
 
     /**
+     * Relation avec le Topic : un user peut avoir plusieurs topics
+     */
+    public function topics(){
+        return $this->hasMany(Topic::class);
+    }
+
+    /**
      * Verify if user has un certain role
      * 
      * @param string $role
