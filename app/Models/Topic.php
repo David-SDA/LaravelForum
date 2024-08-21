@@ -29,4 +29,11 @@ class Topic extends Model
     public function posts(){
         return $this->hasMany(Post::class);
     }
+
+    /**
+     * Relation avec category : un topic à une seul catégorie
+     */
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
 }
