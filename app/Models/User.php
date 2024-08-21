@@ -54,6 +54,13 @@ class User extends Authenticatable
     }
 
     /**
+     * Relation avec post : un user peut avoir plusieurs posts
+     */
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+
+    /**
      * Verify if user has un certain role
      * 
      * @param string $role
