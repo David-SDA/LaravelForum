@@ -19,7 +19,7 @@ class RegisterController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(){
-        return view('auth.register');
+        return view('pages.auth.register');
     }
 
     /**
