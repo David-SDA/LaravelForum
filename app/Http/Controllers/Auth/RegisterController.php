@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -26,7 +28,20 @@ class RegisterController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request){
-        //
+        // Permet de valider les données obtenus via les champs
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed|min:8',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+
+        return back();
     }
 
     /**

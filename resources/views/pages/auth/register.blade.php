@@ -9,7 +9,7 @@
         <div>
             <p>Something went wrong !</p>
             <ul>
-                @foreach($errors->all() as $errors)
+                @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
