@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
@@ -35,13 +36,17 @@ class RegisterController extends Controller
             'password' => 'required|confirmed|min:8',
         ]);
 
+        // Ajout des données
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'role' => 'user',
         ]);
 
-        return back();
+        Auth::login($user);
+
+        return redirect('/');
     }
 
     /**
