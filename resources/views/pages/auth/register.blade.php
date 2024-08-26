@@ -7,7 +7,6 @@
 
     @if($errors->any())
         <div>
-            <p>Something went wrong !</p>
             <ul>
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -21,19 +20,19 @@
 
         <div>
             <label for="name">Name</label>
-            <input type="text" name="name" id="name" value="{{ old('name') }}" autofocus>
+            <input type="text" name="name" id="name" value="{{ old('name') }}" autofocus required>
         </div>
         <div>
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="{{ old('email') }}">
+            <input type="email" name="email" id="email" value="{{ old('email') }}" required>
         </div>
         <div>
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" value="{{ old('password') }}">
+            <input type="password" name="password" id="password" value="{{ old('password') }}" required>
         </div>
         <div>
             <label for="password_confirmation">Password Confirmation</label>
-            <input type="password" name="password_confirmation" id="password_confirmation" value="{{ old('password_confirmation') }}">
+            <input type="password" name="password_confirmation" id="password_confirmation" value="{{ old('password_confirmation') }}" required>
         </div>
         <div>
             <button>Register</button>
