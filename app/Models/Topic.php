@@ -11,9 +11,11 @@ class Topic extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'content',
         'locked',
         'user_id',
+        'category_id',
     ];
 
     /**
