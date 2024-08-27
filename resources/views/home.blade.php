@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title') Laravel Forum @endsection
+@section('title', 'Laravel Forum')
 
 @section('content')
     <h1>Laravel Forum Home Page</h1>

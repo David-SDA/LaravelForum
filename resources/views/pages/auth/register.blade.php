@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title') Register @endsection
+@section('title', 'Register')
 
 @section('content')
     <h2>Register</h2>
