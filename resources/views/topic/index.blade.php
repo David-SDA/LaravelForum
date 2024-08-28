@@ -3,7 +3,6 @@
 @section('title', 'Topics')
 
 @section('content')
-    <br>
     <h1>Topics</h1>
     <br>
     @foreach ($topics as $topic)

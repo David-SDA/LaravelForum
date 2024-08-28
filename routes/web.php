@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TopicController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LogoutController;
@@ -8,7 +9,7 @@ use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::post('/logout', [LogoutController::class, 'destroy'])->middleware('auth');
 
@@ -31,4 +32,10 @@ Route::prefix('/topic')->name('topic.')->controller(TopicController::class)->gro
         'id' => '[0-9]+',
         'slug' => '[a-z0-9\-]+'
     ])->name('show');
+});
+
+Route::prefix('/category')->name('category.')->controller(CategoryController::class)->group(function (){
+    Route::get('/', 'index')->name('index');
+
+    Route::get('/{id}', 'show')->name('show');
 });
