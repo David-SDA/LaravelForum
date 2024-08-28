@@ -46,9 +46,13 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table laravelforum.categories : ~0 rows (environ)
+INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+	(1, 'Sport', '2024-08-28 14:53:38', '2024-08-28 14:53:38'),
+	(2, 'Culture', '2024-08-28 14:53:50', '2024-08-28 14:53:50'),
+	(3, 'Tech', '2024-08-28 14:54:06', '2024-08-28 14:54:06');
 
 -- Listage de la structure de table laravelforum. failed_jobs
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
@@ -103,9 +107,9 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table laravelforum.migrations : ~5 rows (environ)
+-- Listage des données de la table laravelforum.migrations : ~7 rows (environ)
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '0001_01_01_000000_create_users_table', 1),
 	(2, '0001_01_01_000001_create_cache_table', 1),
@@ -114,7 +118,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(5, '2024_08_20_143913_create_topics_table', 3),
 	(6, '2024_08_21_131034_create_posts_table', 4),
 	(7, '2024_08_21_133426_create_categories_table', 5),
-	(8, '2024_08_21_134410_add_category_id_to_topics_table', 6);
+	(8, '2024_08_21_134410_add_category_id_to_topics_table', 6),
+	(9, '2024_08_27_094120_add_slug_to_topics_table', 7);
 
 -- Listage de la structure de table laravelforum. password_reset_tokens
 CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
@@ -139,9 +144,12 @@ CREATE TABLE IF NOT EXISTS `posts` (
   KEY `posts_topic_id_foreign` (`topic_id`),
   CONSTRAINT `posts_topic_id_foreign` FOREIGN KEY (`topic_id`) REFERENCES `topics` (`id`),
   CONSTRAINT `posts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table laravelforum.posts : ~0 rows (environ)
+INSERT INTO `posts` (`id`, `content`, `user_id`, `topic_id`, `created_at`, `updated_at`) VALUES
+	(1, 'First post of topic 1', 2, 1, '2024-08-28 14:55:02', '2024-08-28 14:55:02'),
+	(2, 'First post of topic 2', 1, 2, '2024-08-28 14:55:31', '2024-08-28 14:55:31');
 
 -- Listage de la structure de table laravelforum. sessions
 CREATE TABLE IF NOT EXISTS `sessions` (
@@ -156,29 +164,33 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table laravelforum.sessions : ~2 rows (environ)
+-- Listage des données de la table laravelforum.sessions : ~1 rows (environ)
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-	('CIo33VsdPqohcP0RF4SBLWb7ELWujwdW85ifBToO', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYU56UUJWVFRkZzJTeGZ4eTZSbkxrWE9zMTJaMzRDSFk1dGRsYjZ1TSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1724166248),
-	('U7KhnXvrEIrFhzqfvEotUeKFToKrPx9Dtsfenw6E', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWXJ3a09nd01pT2NvNHgzZE44YzIxVGRFcnBmdnZCRnpvOXVRZ09ScyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1724245480);
+	('YLh7WLyu4LfdxAm1wKRL2QHYwccXwU1D1a3Ne3kk', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWTlhZWt6enFLYURXQWZjUHFqVDdLU1l1UDZGR3VZSElZaG5GYUtraCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jYXRlZ29yeS8zIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1724858267);
 
 -- Listage de la structure de table laravelforum. topics
 CREATE TABLE IF NOT EXISTS `topics` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `locked` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `category_id` bigint unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `topics_slug_unique` (`slug`),
   KEY `topics_user_id_foreign` (`user_id`),
   KEY `topics_category_id_foreign` (`category_id`),
   CONSTRAINT `topics_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL,
   CONSTRAINT `topics_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table laravelforum.topics : ~0 rows (environ)
+-- Listage des données de la table laravelforum.topics : ~2 rows (environ)
+INSERT INTO `topics` (`id`, `user_id`, `title`, `slug`, `content`, `locked`, `created_at`, `updated_at`, `category_id`) VALUES
+	(1, 1, 'First topic', 'first-topic', 'Content of first topic', 0, '2024-08-27 12:35:36', '2024-08-27 12:35:36', 1),
+	(2, 2, 'Second topic', 'second-topic', 'Content of second topic', 0, '2024-08-27 13:13:28', '2024-08-27 13:13:28', 2);
 
 -- Listage de la structure de table laravelforum. users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -193,9 +205,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'USER',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table laravelforum.users : ~0 rows (environ)
+-- Listage des données de la table laravelforum.users : ~2 rows (environ)
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
+	(1, 'user1', 'user1@user1.com', NULL, '$2y$12$xyk2uvQ5grvu5UqTVC.0Ie.Co3tVLV.YU2OxVTcxfKwWmAvsJLjK.', NULL, '2024-08-26 07:52:36', '2024-08-26 07:52:36', 'user'),
+	(2, 'user2', 'user2@user2.com', NULL, '$2y$12$hguPE3qazSfR82kFFFdT8uuZvlNJm8/slvofKAqQ./rFlrZj4Kigm', NULL, '2024-08-26 10:11:51', '2024-08-26 10:11:51', 'user');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
